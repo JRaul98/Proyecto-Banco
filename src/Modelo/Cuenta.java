@@ -128,11 +128,43 @@ public class Cuenta {
 		return "Cuenta [cueId=" + cueId + ", cueSaldo=" + cueSaldo + ", cueFecApertura=" + cueFecApertura
 				+ ", cueEstado=" + cueEstado + ", cueSobregiro=" + cueSobregiro + ", cli=" + cli + "]";
 	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cli == null) ? 0 : cli.hashCode());
+		result = prime * result + ((cueId == null) ? 0 : cueId.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cuenta other = (Cuenta) obj;
+		if (cli == null) {
+			if (other.cli != null)
+				return false;
+		} else if (!cli.equals(other.cli))
+			return false;
+		if (cueId == null) {
+			if (other.cueId != null)
+				return false;
+		} else if (!cueId.equals(other.cueId))
+			return false;
+		return true;
+	}
+	
 	public boolean depositar(Integer monto) {
 		CuentaDao cueDao=new CuentaDao();
 		this.cueSaldo=cueDao.buscar(this).getCueSaldo();
 		this.setCueSaldo(this.getCueSaldo()+monto);//OPERACION DEPOSITO
 		return cueDao.actualizarSaldo(this);	//ACTUALIZO EL SALDO
+		
 	}
 	
 

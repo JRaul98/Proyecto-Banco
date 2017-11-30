@@ -1,6 +1,5 @@
 package ModeloDao;
 
-import java.security.GeneralSecurityException;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +16,6 @@ import Modelo.Natural;
 public class CuentaDao {
 	private static final String SQL_INGRESAR = 
 			"call banco.sp_ingresar_cuenta(?, ?, ?);";
-	
 	private static final String SQL_ACTUALIZAR=
 			"call banco.sp_actualizar_cuenta(?,?,?,?);";
 	private static final String SQL_ACTUALIZAR_OPERACION=
@@ -38,26 +36,23 @@ public class CuentaDao {
 	
 	
 	public boolean ingresar(Cuenta c){
-		CallableStatement ps;
+		CallableStatement cs;
 		ResultSet rs;
 		int bandera=0;
 	        try {
-	        	ps = cnn.getCnn().prepareCall(SQL_INGRESAR);
-	        	ps.setString(1, c.getCli().getPerRut());
-	            ps.setInt(2, c.getCueSaldo());
-	            ps.setInt(3, c.getCueSobregiro());
-	            System.out.println(c.toString());
-	            rs = ps.executeQuery();
-	            while(rs.next()){ 
+	        	cs = cnn.getCnn().prepareCall(SQL_INGRESAR);
+	        	cs.setString(1, c.getCli().getPerRut());
+	            cs.setInt(2, c.getCueSaldo());
+	            cs.setInt(3, c.getCueSobregiro());
+	            rs = cs.executeQuery();
+	            while(rs.next()){
 	            	bandera = rs.getInt("_resultado");
-	            	System.out.println(bandera);
-	           
 	            }
 	            if(bandera > 0) {
 	            	return true;
 	            }
 	        } catch (SQLException ex) {
-	        	 ex.printStackTrace();	 
+	        	 System.out.println("Error al Ingresar Cuenta " + ex.toString());
 	        }finally{
 	            cnn.cerrarConexion();
 	        }
@@ -90,8 +85,8 @@ public class CuentaDao {
         int bandera;
         try {
             ps=cnn.getCnn().prepareStatement(SQL_ACTUALIZAR_OPERACION);
-            ps.setInt(1,c.getCueSaldo());
-            ps.setInt(2,c.getCueId());
+            ps.setInt(1,c.getCueId());
+            ps.setInt(2,c.getCueSaldo());
             bandera=ps.executeUpdate();
             if(bandera>0){
                 return true;

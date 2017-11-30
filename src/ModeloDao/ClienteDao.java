@@ -19,6 +19,9 @@ public class ClienteDao {
 	
 	private static final String SQL_BUSCAR_TIPO_CLIENTE =
 			"call banco.sp_buscar_cliente(?);";
+	private static final String SQL_BUSCAR_CLIENTE =
+			"call banco.sp_buscar_cliente(?);";
+	
 	
 	
 	
@@ -74,6 +77,33 @@ public class ClienteDao {
         }
         return null;
     }
+	public boolean buscarforcuenta(Cliente x) {
+		CallableStatement ps;
+		ResultSet rs;
+		int bandera = 0;
+		try {
+			ps= cnn.getCnn().prepareCall(SQL_BUSCAR_CLIENTE);
+			ps.setString(1, x.getPerRut());
+			rs = ps.executeQuery();
+            while(rs.next()) {
+            	Ejecutivo e = new Ejecutivo();
+            	e.setPerRut(rs.getString("EJECUTIVO"));
+            	x.setPerNombre(rs.getString("NOMBRE"));
+            	x.setPerApePaterno(rs.getString("PATERNO"));
+            	x.setPerApeMaterno(rs.getString("MATERNO"));
+            	x.setPerFecNacimiento(rs.getString("NACIMIENTO"));
+            	x.setCliCategoria(rs.getString("CATEGORIA"));
+            	x.setEje(e);
+            	
+            	
+            }
+		}catch (SQLException ex) {
+            System.out.println(ex.toString());
+        }finally {
+			cnn.cerrarConexion();
+		}
+		return false;
+	}
 	
 	public ArrayList<Cliente> listar() {
         
