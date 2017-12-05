@@ -159,27 +159,7 @@ public class Cuenta {
 		return true;
 	}
 	
-	public boolean depositar(Integer monto) {
-		CuentaDao cueDao=new CuentaDao();
-		this.cueSaldo=cueDao.buscar(this).getCueSaldo();
-		this.setCueSaldo(this.getCueSaldo()+monto);//OPERACION DEPOSITO
-		return cueDao.actualizarSaldo(this);	//ACTUALIZO EL SALDO
-		
-	}
-	
 
-	public boolean girar(Integer monto) {
-		CuentaDao cueDao=new CuentaDao();
-		this.cueSaldo=cueDao.buscar(this).getCueSaldo();
-		if(this.cueSobregiro==1) {
-			this.setCueSaldo(this.getCueSaldo()-monto);
-			return cueDao.actualizarSaldo(this);
-		}else { 
-			if(this.cueSaldo-monto>=0) {
-				this.setCueSaldo(this.getCueSaldo()-monto);
-				return cueDao.actualizarSaldo(this);
-			}
-		} 
-		return false;
-	}
+
+
 }

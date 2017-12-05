@@ -52,38 +52,36 @@ public class NaturalDao {
         return false;        
 		}
 	
-	public boolean actualizar(Natural n) {
-		CallableStatement ps;
-		 ResultSet rs;
-		 int bandera = 0;
-	        try {
-	            ps= cnn.getCnn().prepareCall(SQL_ACTUALIZAR);
-
-	            ps.setString(1, n.getPerRut());
-	            ps.setString(2, n.getPerNombre());
-	            ps.setString(3, n.getPerApePaterno());
-	            ps.setString(4, n.getPerApeMaterno());
-	            ps.setString(5, n.getPerNacionalidad());
-	            ps.setString(6, n.getPerFecNacimiento());
-	            ps.setString(7, n.getCliCategoria());
-	            ps.setString(8, n.getEje().getPerRut());
-	            ps.setInt(9, n.getNatPatrimonio());
-	            System.out.println(ps.toString());
-	            rs = ps.executeQuery();
-	            while(rs.next()) {
-	            	bandera = rs.getInt("_RESULTADO");
-	            	System.out.println(bandera);
-	            }
-	            if(bandera > 0) {
-	            	return true;
-	            }
-	        } catch (SQLException ex) {
-	            ex.printStackTrace();
-	        }finally{
-	            cnn.cerrarConexion();
-	        }
-	        return false;
-	    }
+	public boolean actualizar(Natural x) {
+        CallableStatement ps;
+        ResultSet rs;
+        int bandera = 0;
+        try {
+            ps= cnn.getCnn().prepareCall(SQL_ACTUALIZAR);
+            ps.setString(1, x.getPerRut());
+            ps.setString(2, x.getPerNombre());
+            ps.setString(3, x.getPerApePaterno());
+            ps.setString(4, x.getPerApeMaterno());
+            ps.setString(5, x.getPerNacionalidad());
+            ps.setString(6, x.getPerFecNacimiento());
+            ps.setString(7, x.getCliCategoria());
+            ps.setString(8, x.getEje().getPerRut());
+            ps.setInt(9, x.getNatPatrimonio());
+            rs = ps.executeQuery();
+            while(rs.next()) {
+            	bandera = rs.getInt("_RESULTADO");
+            	System.out.println(bandera);
+            }
+            if(bandera > 0) {
+            	return true;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }finally{
+            cnn.cerrarConexion();
+        }
+        return false;
+    }
 	 public boolean exite(Natural n) {
 	        PreparedStatement ps;
 	        ResultSet rs;
