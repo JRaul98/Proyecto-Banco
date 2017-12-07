@@ -16,7 +16,7 @@ public class Natural extends Cliente {
 	public Natural() {
 		super();
 	}
- 
+
 	/**
 	 * @param perRut
 	 * @param perNombre

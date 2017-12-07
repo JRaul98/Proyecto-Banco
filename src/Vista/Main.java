@@ -43,14 +43,16 @@ public class Main {
 		System.out.println();
 		System.out.println("1.-Nuevo Cliente");
 		System.out.println("2.-Apertura de Cuenta");
-		System.out.println("3.-Girar");
-		System.out.println("4.-Depositar");
-		System.out.println("5.-Mantenedor de Cliente");
-		System.out.println("6.-Mantenedor de Cuenta");
-		System.out.println("7.-Mantenedor de Ejecutivo");
+		System.out.println("3.-Mantenedor de Cliente");
+		System.out.println("4.-Mantenedor de Cuenta");
+		System.out.println("5.-Mantenedor de Ejecutivo");
+		System.out.println("6.-Girar");
+		System.out.println("7.-Depositar");
+		System.out.println("8.-Salir");
+
 		o = JOptionPane.showInputDialog("Ingrese una Opcion");
 		Integer id, saldo;
-		do {
+		while (true) {
 			switch (o) {
 			case "1":// LISTO
 				System.out.println("-----------------------------------------------");
@@ -138,50 +140,8 @@ public class Main {
 				cuedao = new CuentaDao();
 				cuedao.ingresar(cu);
 
-				break;
+				break;				
 			case "3":// LISTO
-				id = Integer.parseInt(JOptionPane.showInputDialog("Indique el Id de la Cuenta"));
-				cli = new Cliente();
-				cu = new Cuenta(cli);
-				cu.setCueId(id);
-				cuedao = new CuentaDao();
-				cuedao.buscarid(cu);
-				if (cu.getCueSobregiro() == 1) {
-					saldo = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la Cantidad a Girar"));
-					cu.setCueSaldo(cu.getCueSaldo() - saldo);
-					if (cuedao.actualizarSaldo(cu)) {
-						JOptionPane.showMessageDialog(null, "Se realizo correctamente el giro");
-					}
-				} else {
-					saldo = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la Cantidad a Girar"));
-					if (cu.getCueSaldo() - saldo >= 0) {
-						cu.setCueSaldo(cu.getCueSaldo() - saldo);
-						if (cuedao.actualizarSaldo(cu)) {
-							JOptionPane.showMessageDialog(null, "Se realizo correctamente el giro");
-						}
-					} else {
-						JOptionPane.showMessageDialog(null, "No cuenta con saldo suficiente");
-					}
-				}
-				break;
-			case "4":// LISTO
-				id = Integer.parseInt(JOptionPane.showInputDialog("Indique el Id de la Cuenta"));
-				cli = new Cliente();
-				cu = new Cuenta(cli);
-				cu.setCueId(id);
-				cuedao = new CuentaDao();
-				cuedao.buscarid(cu);
-				if (cu.getCueEstado().toLowerCase().equals("vigente")) {
-					saldo = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la Cantidad a Depositar"));
-					cu.setCueSaldo(cu.getCueSaldo() + saldo);
-					if (cuedao.actualizarSaldo(cu)) {
-						JOptionPane.showMessageDialog(null, "Se realizo correctamente el deposito");
-					}
-				} else {
-					JOptionPane.showMessageDialog(null, "Cuenta Bloqueada o Inactiva, Favor de Reabrir su cuenta");
-				}
-				break;
-			case "5":// LISTO
 				System.out.println("----------------------------------------------");
 				System.out.println("            MANTENEDOR DE CLIENTE             ");
 				System.out.println("----------------------------------------------");
@@ -192,6 +152,9 @@ public class Main {
 				o = JOptionPane.showInputDialog("Ingrese una Opcion");
 				switch (o) {
 				case "1":
+					System.out.println("------------------------------------------------------------");
+					System.out.println("              ACTUALIZAR DATOS CLIENTE NATURAL              ");
+					System.out.println("------------------------------------------------------------");
 					Natural n2 = new Natural();
 					natdao = new NaturalDao();
 					Ejecutivo ec = new Ejecutivo();
@@ -220,6 +183,9 @@ public class Main {
 					;
 					break;
 				case "2":
+					System.out.println("------------------------------------------------------------");
+					System.out.println("              ACTUALIZAR DATOS CLIENTE JURIDICO             ");
+					System.out.println("------------------------------------------------------------");
 					jur = new Juridico();
 					jurdao = new JuridicoDao();
 					eje = new Ejecutivo();
@@ -248,6 +214,9 @@ public class Main {
 					;
 					break;
 				case "3":
+					System.out.println("----------------------------------------");
+					System.out.println("              BUSCAR CLIENTE            ");
+					System.out.println("----------------------------------------");
 					cli = new Cliente();
 					clidao = new ClienteDao();
 					r = JOptionPane.showInputDialog("Ingrese el Rut del Cliente");
@@ -255,6 +224,9 @@ public class Main {
 					clidao.buscarcuenta(cli);
 					break;
 				case "4":
+					System.out.println("-------------------------------------------");
+					System.out.println("              LISTAR CLIENTES              ");
+					System.out.println("-------------------------------------------");
 					String[] options2 = { "Natural", "Juridico", "Todos" };
 					int iop = JOptionPane.showOptionDialog(null, "Cual cliente desea listar?", "LISTAR CLIENTES",
 							JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options2, null);
@@ -318,7 +290,7 @@ public class Main {
 					break;
 				}
 				break;
-			case "6":// LISTO
+			case "4":// LISTO
 				System.out.println("----------------------------------------------");
 				System.out.println("            MANTENEDOR DE CUENTA              ");
 				System.out.println("----------------------------------------------");
@@ -330,6 +302,9 @@ public class Main {
 				o = JOptionPane.showInputDialog("Ingrese la Opcion");
 				switch (o) {
 				case "1":
+					System.out.println("----------------------------------------------------");
+					System.out.println("              ACTUALIZAR DATOS DE CUENTA            ");
+					System.out.println("----------------------------------------------------");
 					id = Integer.parseInt(JOptionPane.showInputDialog("Indique el Id de Cuenta a Actualizar"));
 					saldo = Integer.parseInt(JOptionPane.showInputDialog("Ingrese Nuevo Saldo"));
 					es = JOptionPane.showInputDialog("Actualice su Estado");
@@ -346,6 +321,9 @@ public class Main {
 					}
 					break;
 				case "2":
+					System.out.println("-----------------------------------------");
+					System.out.println("              ELIMINAR CUENTA            ");
+					System.out.println("-----------------------------------------");
 					id = Integer.parseInt(JOptionPane.showInputDialog("Indique el Id de Cuenta a Eliminar"));
 					cli = new Cliente();
 					cu = new Cuenta(cli);
@@ -356,6 +334,9 @@ public class Main {
 					}
 					break;
 				case "3":
+					System.out.println("------------------------------------------");
+					System.out.println("              BLOQUEAR CUENTA             ");
+					System.out.println("------------------------------------------");
 					id = Integer.parseInt(JOptionPane.showInputDialog("Indique el Id de Cuenta a Bloquear"));
 					cli = new Cliente();
 					cu = new Cuenta(cli);
@@ -410,7 +391,7 @@ public class Main {
 					break;
 				}
 				break;
-			case "7":// LISTO
+			case "5":// LISTO
 				System.out.println("----------------------------------------------");
 				System.out.println("            MANTENEDOR DE EJECUTIVO           ");
 				System.out.println("----------------------------------------------");
@@ -421,6 +402,9 @@ public class Main {
 				o = JOptionPane.showInputDialog("Escoja una Opcion");
 				switch (o) {
 				case "1":
+					System.out.println("----------------------------------------------");
+					System.out.println("              INGRESAR EJECUTIVP              ");
+					System.out.println("----------------------------------------------");
 					eje = new Ejecutivo();
 					ejedao = new EjecutivoDao();
 					r = JOptionPane.showInputDialog("Ingrese el Rut");
@@ -441,6 +425,9 @@ public class Main {
 					}
 					break;
 				case "2":
+					System.out.println("------------------------------------------------------------");
+					System.out.println("              ACTUALIZAR DATOS EJECUTIVO              ");
+					System.out.println("------------------------------------------------------------");
 					Ejecutivo ejec = new Ejecutivo();
 					EjecutivoDao ejecdao = new EjecutivoDao();
 					String rut = JOptionPane.showInputDialog("Ingrese el Rut del Ejecutivo");
@@ -467,6 +454,9 @@ public class Main {
 
 					break;
 				case "3":
+					System.out.println("---------------------------------------------");
+					System.out.println("              LISTAR EJECUTIVOS              ");
+					System.out.println("---------------------------------------------");
 					EjecutivoDao ejedao1 = new EjecutivoDao();
 					ejecutivos = new ArrayList<>();
 					ejecutivos = ejedao1.listar();
@@ -475,8 +465,59 @@ public class Main {
 					}
 					break;
 				}
+			case "6":
+				System.out.println("-----------------------------------------");
+				System.out.println("              REALIZAR GIRO              ");
+				System.out.println("-----------------------------------------");
+				id = Integer.parseInt(JOptionPane.showInputDialog("Indique el Id de la Cuenta"));
+				cli = new Cliente();
+				cu = new Cuenta(cli);
+				cu.setCueId(id);
+				cuedao = new CuentaDao();
+				cuedao.buscarid(cu);
+				if (cu.getCueSobregiro() == 1) {
+					saldo = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la Cantidad a Girar"));
+					cu.setCueSaldo(cu.getCueSaldo() - saldo);
+					if (cuedao.actualizarSaldo(cu)) {
+						JOptionPane.showMessageDialog(null, "Se realizo correctamente el giro");
+					}
+				} else {
+					saldo = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la Cantidad a Girar"));
+					if (cu.getCueSaldo() - saldo >= 0) {
+						cu.setCueSaldo(cu.getCueSaldo() - saldo);
+						if (cuedao.actualizarSaldo(cu)) {
+							JOptionPane.showMessageDialog(null, "Se realizo correctamente el giro");
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "No cuenta con saldo suficiente");
+					}
+				}
+				break;
+			case "7":
+				System.out.println("---------------------------------------------");
+				System.out.println("              REALIZAR DEPOSITO              ");
+				System.out.println("---------------------------------------------");
+				id = Integer.parseInt(JOptionPane.showInputDialog("Indique el Id de la Cuenta"));
+				cli = new Cliente();
+				cu = new Cuenta(cli);
+				cu.setCueId(id);
+				cuedao = new CuentaDao();
+				cuedao.buscarid(cu);
+				if (cu.getCueEstado().toLowerCase().equals("vigente")) {
+					saldo = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la Cantidad a Depositar"));
+					cu.setCueSaldo(cu.getCueSaldo() + saldo);
+					if (cuedao.actualizarSaldo(cu)) {
+						JOptionPane.showMessageDialog(null, "Se realizo correctamente el deposito");
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Cuenta Bloqueada o Inactiva, Favor de Reabrir su cuenta");
+				}
+				break;
+			case"8":
+				System.exit(0);
+				break;
 			}
 
-		} while (o != null);
+		} 
 	}
 }

@@ -60,7 +60,7 @@ public class CuentaDao {
 			ps.setString(3, c.getCueEstado());
 			ps.setInt(4, c.getCueSobregiro());
 			System.out.println(c.toString());
-			
+
 			bandera = ps.executeUpdate();
 			if (bandera > 0) {
 				return true;
@@ -77,22 +77,21 @@ public class CuentaDao {
 		PreparedStatement ps;
 		int bandera;
 		try {
-			ps= cnn.getCnn().prepareStatement(SQL_ACTUALIZAR_OPERACION );
+			ps = cnn.getCnn().prepareStatement(SQL_ACTUALIZAR_OPERACION);
 			ps.setInt(1, c.getCueSaldo());
 			ps.setInt(2, c.getCueId());
 			bandera = ps.executeUpdate();
-			if(bandera>0){
-                return true;
-            }
+			if (bandera > 0) {
+				return true;
+			}
 
-		}catch (SQLException ex) {
-            System.out.println(ex.toString());
-        }finally {
+		} catch (SQLException ex) {
+			System.out.println(ex.toString());
+		} finally {
 			cnn.cerrarConexion();
 		}
-		return false;	
+		return false;
 	}
-	
 
 	public boolean eliminar(Cuenta c) {
 		PreparedStatement ps;
@@ -132,7 +131,7 @@ public class CuentaDao {
 		return false;
 	}
 
-	public Cuenta buscar(Cuenta cu) {//para la opcion 6 
+	public Cuenta buscar(Cuenta cu) {// para la opcion 6
 		CallableStatement ps;
 		ResultSet rs;
 		ArrayList<Cuenta> bcuentas = new ArrayList();
@@ -160,22 +159,23 @@ public class CuentaDao {
 		}
 		return cu;
 	}
-	//para realizar un deposito
+
+	// para realizar un deposito
 	public boolean buscarid(Cuenta x) {
 		PreparedStatement ps;
 		ResultSet rs;
 		try {
-			ps= cnn.getCnn().prepareStatement(SQL_BUSCAR_ID);
+			ps = cnn.getCnn().prepareStatement(SQL_BUSCAR_ID);
 			ps.setInt(1, x.getCueId());
 			rs = ps.executeQuery();
-            while(rs.next()) {
-            	x.setCueSaldo(rs.getInt("cueSaldo"));
-            	x.setCueSobregiro(rs.getInt("cueSobregiro"));
-            	x.setCueEstado(rs.getString("cueEstado"));
-            }
-		}catch (SQLException ex) {
-            System.out.println(ex.toString());
-        }finally {
+			while (rs.next()) {
+				x.setCueSaldo(rs.getInt("cueSaldo"));
+				x.setCueSobregiro(rs.getInt("cueSobregiro"));
+				x.setCueEstado(rs.getString("cueEstado"));
+			}
+		} catch (SQLException ex) {
+			System.out.println(ex.toString());
+		} finally {
 			cnn.cerrarConexion();
 		}
 		return false;

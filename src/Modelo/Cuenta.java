@@ -6,8 +6,7 @@ package Modelo;
 import ModeloDao.CuentaDao;
 
 /**
- * @author Raúl Llatas
- *version 1.0
+ * @author Raúl Llatas version 1.0
  */
 public class Cuenta {
 	private Integer cueId;
@@ -16,19 +15,15 @@ public class Cuenta {
 	private String cueEstado;
 	private Integer cueSobregiro;
 	private Cliente cli;
-	
+
 	/**
 	 *
 	 * @param cliente
 	 */
-	public Cuenta(String rut) {		
-		this.cli=new Cliente(); 
-		cli.setPerRut(rut);
-	}
 	public Cuenta(Cliente cli) {
 		this.cli = cli;
 	}
-	
+
 	/**
 	 * @param cueId
 	 * @param cueSaldo
@@ -45,82 +40,102 @@ public class Cuenta {
 		this.cueEstado = cueEstado;
 		this.cueSobregiro = cueSobregiro;
 		this.cli = cli;
-		
+
 	}
+
 	/**
 	 * @return the cueId
 	 */
 	public Integer getCueId() {
 		return cueId;
 	}
+
 	/**
-	 * @param cueId the cueId to set
+	 * @param cueId
+	 *            the cueId to set
 	 */
 	public void setCueId(Integer cueId) {
 		this.cueId = cueId;
 	}
+
 	/**
 	 * @return the cueSaldo
 	 */
 	public Integer getCueSaldo() {
 		return cueSaldo;
 	}
+
 	/**
-	 * @param cueSaldo the cueSaldo to set
+	 * @param cueSaldo
+	 *            the cueSaldo to set
 	 */
 	public void setCueSaldo(Integer cueSaldo) {
 		this.cueSaldo = cueSaldo;
 	}
+
 	/**
 	 * @return the cueFecApertura
 	 */
 	public String getCueFecApertura() {
 		return cueFecApertura;
 	}
+
 	/**
-	 * @param cueFecApertura the cueFecApertura to set
+	 * @param cueFecApertura
+	 *            the cueFecApertura to set
 	 */
 	public void setCueFecApertura(String cueFecApertura) {
 		this.cueFecApertura = cueFecApertura;
 	}
+
 	/**
 	 * @return the cueEstado
 	 */
 	public String getCueEstado() {
 		return cueEstado;
 	}
+
 	/**
-	 * @param cueEstado the cueEstado to set
+	 * @param cueEstado
+	 *            the cueEstado to set
 	 */
 	public void setCueEstado(String cueEstado) {
 		this.cueEstado = cueEstado;
 	}
+
 	/**
 	 * @return the cueSobregiro
 	 */
 	public Integer getCueSobregiro() {
 		return cueSobregiro;
 	}
+
 	/**
-	 * @param cueSobregiro the cueSobregiro to set
+	 * @param cueSobregiro
+	 *            the cueSobregiro to set
 	 */
 	public void setCueSobregiro(Integer cueSobregiro) {
 		this.cueSobregiro = cueSobregiro;
 	}
+
 	/**
 	 * @return the cli
 	 */
 	public Cliente getCli() {
 		return cli;
 	}
+
 	/**
-	 * @param cli the cli to set
+	 * @param cli
+	 *            the cli to set
 	 */
 	public void setCli(Cliente cli) {
 		this.cli = cli;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -128,7 +143,7 @@ public class Cuenta {
 		return "Cuenta [cueId=" + cueId + ", cueSaldo=" + cueSaldo + ", cueFecApertura=" + cueFecApertura
 				+ ", cueEstado=" + cueEstado + ", cueSobregiro=" + cueSobregiro + ", cli=" + cli + "]";
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -137,6 +152,7 @@ public class Cuenta {
 		result = prime * result + ((cueId == null) ? 0 : cueId.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -158,8 +174,5 @@ public class Cuenta {
 			return false;
 		return true;
 	}
-	
-
-
 
 }
