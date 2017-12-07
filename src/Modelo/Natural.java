@@ -8,7 +8,7 @@ package Modelo;
  *
  */
 public class Natural extends Cliente {
-	private int natPatrimonio;
+	private Integer natPatrimonio;
 
 	/**
 	 * Constructor Vacio
@@ -16,7 +16,7 @@ public class Natural extends Cliente {
 	public Natural() {
 		super();
 	}
-
+ 
 	/**
 	 * @param perRut
 	 * @param perNombre
@@ -27,22 +27,24 @@ public class Natural extends Cliente {
 	 * @param cliCategoria
 	 * @param natPatrimonio
 	 */
-	
-	public int getNatPatrimonio() {
+
+	public Integer getNatPatrimonio() {
 		return natPatrimonio;
 	}
 
 	public Natural(String perRut, String perNombre, String perApePaterno, String perApeMaterno, String perNacionalidad,
-			String perFecNacimiento, String cliCategoria, Ejecutivo eje, int natPatrimonio) {
+			String perFecNacimiento, String cliCategoria, Ejecutivo eje, Integer natPatrimonio) {
 		super(perRut, perNombre, perApePaterno, perApeMaterno, perNacionalidad, perFecNacimiento, cliCategoria, eje);
 		this.natPatrimonio = natPatrimonio;
 	}
 
-	public void setNatPatrimonio(int natPatrimonio) {
+	public void setNatPatrimonio(Integer natPatrimonio) {
 		this.natPatrimonio = natPatrimonio;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -67,8 +69,7 @@ public class Natural extends Cliente {
 		} else if (!perRut.equals(other.perRut))
 			return false;
 		return true;
-		
+
 	}
-	
- 
+
 }

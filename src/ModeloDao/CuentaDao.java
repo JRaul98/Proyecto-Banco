@@ -77,7 +77,7 @@ public class CuentaDao {
 		PreparedStatement ps;
 		int bandera;
 		try {
-			ps= cnn.getCnn().prepareStatement(SQL_BUSCAR_ID);
+			ps= cnn.getCnn().prepareStatement(SQL_ACTUALIZAR_OPERACION );
 			ps.setInt(1, c.getCueSaldo());
 			ps.setInt(2, c.getCueId());
 			bandera = ps.executeUpdate();
