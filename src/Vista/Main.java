@@ -36,23 +36,22 @@ public class Main {
 		ArrayList<Cuenta> cuentasj = new ArrayList<>();
 		ArrayList<Cuenta> cuentasn = new ArrayList<>();
 		ArrayList<Cuenta> bcuentas = new ArrayList<>();
-		String o, r = "", n = "", ap = "", am = "", fc = "", rs = "", p = "", es, ca = "", sobregiro;
-		System.out.println("----------------------------------------------");
-		System.out.println("               SISTEMA BANCO  INTER             ");
-		System.out.println("----------------------------------------------");
-		System.out.println();
-		System.out.println("1.-Nuevo Cliente");
-		System.out.println("2.-Apertura de Cuenta");
-		System.out.println("3.-Mantenedor de Cliente");
-		System.out.println("4.-Mantenedor de Cuenta");
-		System.out.println("5.-Mantenedor de Ejecutivo");
-		System.out.println("6.-Girar");
-		System.out.println("7.-Depositar");
-		System.out.println("8.-Salir");
-
-		o = JOptionPane.showInputDialog("Ingrese una Opcion");
-		Integer id, saldo;
-		while (true) {
+		String o, r = "", n = "", ap = "", am = "", na = "", fc = "", fn = "", rs = "", p = "", es, ca = "", sobregiro;
+		do {
+			System.out.println("----------------------------------------------");
+			System.out.println("               SISTEMA BANCO  INTER             ");
+			System.out.println("----------------------------------------------");
+			System.out.println();
+			System.out.println("1.-Nuevo Cliente");
+			System.out.println("2.-Apertura de Cuenta");
+			System.out.println("3.-Mantenedor de Cliente");
+			System.out.println("4.-Mantenedor de Cuenta");
+			System.out.println("5.-Mantenedor de Ejecutivo");
+			System.out.println("6.-Girar");
+			System.out.println("7.-Depositar");
+			System.out.println("8.-Salir");
+			o = JOptionPane.showInputDialog("Ingrese una Opcion");
+			Integer id, saldo;
 			switch (o) {
 			case "1":// LISTO
 				System.out.println("-----------------------------------------------");
@@ -123,8 +122,10 @@ public class Main {
 				System.out.println("              APERTURA DE CUENTA               ");
 				System.out.println("-----------------------------------------------");
 				cli = new Cliente();
-				r = JOptionPane.showInputDialog("Ingrese el RUT del Cliente");
-				cli.setPerRut(r);
+				while (r.equals("")) {
+					r = JOptionPane.showInputDialog("Ingrese el RUT del Cliente");
+					cli.setPerRut(r);
+				}
 				clidao = new ClienteDao();
 				clidao.buscar(cli);
 				saldo = Integer.parseInt(JOptionPane.showInputDialog("Indique el Saldo que ingresara el Cliente"));
@@ -140,7 +141,7 @@ public class Main {
 				cuedao = new CuentaDao();
 				cuedao.ingresar(cu);
 
-				break;				
+				break;
 			case "3":// LISTO
 				System.out.println("----------------------------------------------");
 				System.out.println("            MANTENEDOR DE CLIENTE             ");
@@ -158,21 +159,37 @@ public class Main {
 					Natural n2 = new Natural();
 					natdao = new NaturalDao();
 					Ejecutivo ec = new Ejecutivo();
-					r = JOptionPane.showInputDialog("Ingrese el Rut");
-					n = JOptionPane.showInputDialog("Actualice el Nombre");
-					ap = JOptionPane.showInputDialog("Actualice el Apellido Paterno");
-					am = JOptionPane.showInputDialog("Actualice el Apellido Materno");
-					String na1 = JOptionPane.showInputDialog("Actuliace Nacionalidad");
-					String fn1 = JOptionPane.showInputDialog("Actualice fecha de Nacimiento");
-					ca = JOptionPane.showInputDialog("Actualice Categoria");
+					while (r.equals("")) {
+						r = JOptionPane.showInputDialog("Ingrese el Rut");
+					}
+					while (n.equals("")) {
+						n = JOptionPane.showInputDialog("Ingrese el Nombre");
+					}
+					while (ap.equals("")) {
+						ap = JOptionPane.showInputDialog("Ingrese el Apellido Paterno");
+					}
+					while (am.equals("")) {
+						am = JOptionPane.showInputDialog("Ingrese el Apellido Materno");
+					}
+					while (na.equals("")) {
+						na = JOptionPane.showInputDialog("Actuliace Nacionalidad");
+					}
+					while (fn.equals("")) {
+						fn = JOptionPane.showInputDialog("Actualice fecha de Nacimiento");
+					}
+					while (ca.equals("")) {
+						Object[] opciones = new Object[] { "VIP", "NORMAL", "RIESGO" };
+						ca = (String) JOptionPane.showInputDialog(null, "Escoja Categoria", "Banco Inter",
+								JOptionPane.DEFAULT_OPTION, null, opciones, "VIP");
+					}
 					String reje = JOptionPane.showInputDialog("Ingrese el RUt del Ejecutivo Encargado");
 					p = JOptionPane.showInputDialog("Actualice Patrimonio");
 					n2.setPerRut(r);
 					n2.setPerNombre(n);
 					n2.setPerApePaterno(ap);
 					n2.setPerApeMaterno(am);
-					n2.setPerNacionalidad(na1);
-					n2.setPerFecNacimiento(fn1);
+					n2.setPerNacionalidad(na);
+					n2.setPerFecNacimiento(fn);
 					n2.setCliCategoria(ca);
 					ec.setPerRut(reje);
 					n2.setEje(ec);
@@ -189,21 +206,37 @@ public class Main {
 					jur = new Juridico();
 					jurdao = new JuridicoDao();
 					eje = new Ejecutivo();
-					r = JOptionPane.showInputDialog("Ingrese el Rut");
-					n = JOptionPane.showInputDialog("Actualice el Nombre");
-					ap = JOptionPane.showInputDialog("Actualice el Apellido Paterno");
-					am = JOptionPane.showInputDialog("Actualice el Apellido Materno");
-					String na2 = JOptionPane.showInputDialog("Actuliace Nacionalidad");
-					String fn2 = JOptionPane.showInputDialog("Actualice fecha de Nacimiento");
-					ca = JOptionPane.showInputDialog("Actualice Categoria");
+					while (r.equals("")) {
+						r = JOptionPane.showInputDialog("Ingrese el Rut");
+					}
+					while (n.equals("")) {
+						n = JOptionPane.showInputDialog("Ingrese el Nombre");
+					}
+					while (ap.equals("")) {
+						ap = JOptionPane.showInputDialog("Ingrese el Apellido Paterno");
+					}
+					while (am.equals("")) {
+						am = JOptionPane.showInputDialog("Ingrese el Apellido Materno");
+					}
+					while (na.equals("")) {
+						na = JOptionPane.showInputDialog("Actuliace Nacionalidad");
+					}
+					while (fn.equals("")) {
+						fn = JOptionPane.showInputDialog("Actualice fecha de Nacimiento");
+					}
+					while (ca.equals("")) {
+						Object[] opciones = new Object[] { "VIP", "NORMAL", "RIESGO" };
+						ca = (String) JOptionPane.showInputDialog(null, "Escoja Categoria", "Banco Inter",
+								JOptionPane.DEFAULT_OPTION, null, opciones, "VIP");
+					}
 					String reje1 = JOptionPane.showInputDialog("Ingrese el RUt del Ejecutivo Encargado");
 					rs = JOptionPane.showInputDialog("Actualice Razon Social");
 					jur.setPerRut(r);
 					jur.setPerNombre(n);
 					jur.setPerApePaterno(ap);
 					jur.setPerApeMaterno(am);
-					jur.setPerNacionalidad(na2);
-					jur.setPerFecNacimiento(fn2);
+					jur.setPerNacionalidad(na);
+					jur.setPerFecNacimiento(fn);
 					jur.setCliCategoria(ca);
 					eje.setPerRut(reje1);
 					jur.setEje(eje);
@@ -219,8 +252,10 @@ public class Main {
 					System.out.println("----------------------------------------");
 					cli = new Cliente();
 					clidao = new ClienteDao();
-					r = JOptionPane.showInputDialog("Ingrese el Rut del Cliente");
-					cli.setPerRut(r);
+					while (r.equals("")) {
+						r = JOptionPane.showInputDialog("Ingrese el Rut del Cliente");
+						cli.setPerRut(r);
+					}
 					clidao.buscarcuenta(cli);
 					break;
 				case "4":
@@ -398,20 +433,32 @@ public class Main {
 				System.out.println("1.-Ingresar Ejecutivo");
 				System.out.println("2.-Actualizar Ejecutivo");
 				System.out.println("3.-Lista Ejecutivos");
-
 				o = JOptionPane.showInputDialog("Escoja una Opcion");
 				switch (o) {
 				case "1":
 					System.out.println("----------------------------------------------");
-					System.out.println("              INGRESAR EJECUTIVP              ");
+					System.out.println("              INGRESAR EJECUTIVO             ");
 					System.out.println("----------------------------------------------");
 					eje = new Ejecutivo();
 					ejedao = new EjecutivoDao();
-					r = JOptionPane.showInputDialog("Ingrese el Rut");
-					n = JOptionPane.showInputDialog("Ingrese el Nombre");
-					ap = JOptionPane.showInputDialog("Ingrese el Apellido Patermo");
-					am = JOptionPane.showInputDialog("Ingrese el Apellido Matermo");
-					fc = JOptionPane.showInputDialog("Ingrese el Fecha de Contrato");
+					while (r.equals("")) {
+						r = JOptionPane.showInputDialog("Ingrese el Rut");
+					}
+					while (n.equals("")) {
+						n = JOptionPane.showInputDialog("Ingrese el Nombre");
+					}
+					while (ap.equals("")) {
+						ap = JOptionPane.showInputDialog("Ingrese el Apellido Paterno");
+					}
+					while (am.equals("")) {
+						am = JOptionPane.showInputDialog("Ingrese el Apellido Materno");
+					}
+					while (na.equals("")) {
+						na = JOptionPane.showInputDialog("Actuliace Nacionalidad");
+					}
+					while (fc.equals("")) {
+						fc = JOptionPane.showInputDialog("Actualice fecha de Nacimiento");
+					}
 					eje.setPerRut(r);
 					eje.setPerNombre(n);
 					eje.setPerApePaterno(ap);
@@ -434,19 +481,34 @@ public class Main {
 					ejec.setPerRut(rut);
 					ejecdao.exite(ejec);
 					if (ejec.getPerRut().equals(rut)) {
-						n = JOptionPane.showInputDialog("Actualice el Nombre");
-						ap = JOptionPane.showInputDialog("Actualice el Apellido Paterno");
-						am = JOptionPane.showInputDialog("Actualice el Apellido Materno");
-						String na = JOptionPane.showInputDialog("Actuliace Nacionalidad");
-						String fn = JOptionPane.showInputDialog("Actualice fecha de Nacimiento");
-						String fc1 = JOptionPane.showInputDialog("Actualice Fecha Contrato");
+						while (r.equals("")) {
+							r = JOptionPane.showInputDialog("Ingrese el Rut");
+						}
+						while (n.equals("")) {
+							n = JOptionPane.showInputDialog("Ingrese el Nombre");
+						}
+						while (ap.equals("")) {
+							ap = JOptionPane.showInputDialog("Ingrese el Apellido Paterno");
+						}
+						while (am.equals("")) {
+							am = JOptionPane.showInputDialog("Ingrese el Apellido Materno");
+						}
+						while (na.equals("")) {
+							na = JOptionPane.showInputDialog("Actuliace Nacionalidad");
+						}
+						while (fn.equals("")) {
+							fn = JOptionPane.showInputDialog("Actualice fecha de Nacimiento");
+						}
+						while (fc.equals("")) {
+							fc = JOptionPane.showInputDialog("Actualice fecha de Nacimiento");
+						}
 
 						ejec.setPerNombre(n);
 						ejec.setPerApePaterno(ap);
 						ejec.setPerApeMaterno(am);
 						ejec.setPerNacionalidad(na);
 						ejec.setPerFecNacimiento(fn);
-						ejec.setEjeFecContrato(fc1);
+						ejec.setEjeFecContrato(fc);
 						ejecdao.actualizar(ejec);
 					} else {
 						JOptionPane.showMessageDialog(null, "Rut Invalido");
@@ -465,6 +527,7 @@ public class Main {
 					}
 					break;
 				}
+				break;
 			case "6":
 				System.out.println("-----------------------------------------");
 				System.out.println("              REALIZAR GIRO              ");
@@ -486,11 +549,22 @@ public class Main {
 					if (cu.getCueSaldo() - saldo >= 0) {
 						cu.setCueSaldo(cu.getCueSaldo() - saldo);
 						if (cuedao.actualizarSaldo(cu)) {
-							JOptionPane.showMessageDialog(null, "Se realizo correctamente el giro");
 						}
 					} else {
 						JOptionPane.showMessageDialog(null, "No cuenta con saldo suficiente");
 					}
+				}
+				id = Integer.parseInt(JOptionPane.showInputDialog("Indique el Id de la Cuenta"));
+				cli = new Cliente();
+				cu = new Cuenta(cli);
+				cu.setCueId(id);
+				cuedao = new CuentaDao();
+				cuedao.buscarid(cu);
+				cu.setCueSaldo(cu.getCueSaldo() + saldo);
+				if (cuedao.actualizarSaldo(cu)) {
+					JOptionPane.showMessageDialog(null, "Se realizo  el giro");
+				}else {
+					JOptionPane.showMessageDialog(null, "Error al realizar la accion");
 				}
 				break;
 			case "7":
@@ -513,11 +587,11 @@ public class Main {
 					JOptionPane.showMessageDialog(null, "Cuenta Bloqueada o Inactiva, Favor de Reabrir su cuenta");
 				}
 				break;
-			case"8":
+			case "8":
 				System.exit(0);
 				break;
 			}
 
-		} 
+		} while (o != null);
 	}
 }

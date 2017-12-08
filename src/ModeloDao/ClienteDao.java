@@ -73,7 +73,7 @@ public class ClienteDao {
 	public boolean buscar(Cliente x) {
 		CallableStatement ps;
 		ResultSet rs;
-		int bandera = 0;
+		//int bandera = 0;
 		try {
 			ps = cnn.getCnn().prepareCall(SQL_BUSCAR);
 			ps.setString(1, x.getPerRut());
